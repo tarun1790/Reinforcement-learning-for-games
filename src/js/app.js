@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 datasets: [{
                     label: 'Episode Score',
                     data: [],
-                    borderColor: activeGameName === 'snake' ? '#00ff7f' : '#00bfff',
+                    borderColor: '#ffd700',
                     backgroundColor: 'rgba(0,0,0,0)',
                     borderWidth: 2,
                     tension: 0.2
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 datasets: [{
                     label: 'Average Loss',
                     data: [],
-                    borderColor: '#ff4500',
+                    borderColor: '#ff8c00',
                     backgroundColor: 'rgba(0,0,0,0)',
                     borderWidth: 2,
                     tension: 0.2

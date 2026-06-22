@@ -19,155 +19,173 @@
 </head>
 <body>
 
-    <!-- Header bar -->
-    <header>
-        <h1>Reinforcement Learning Lab</h1>
-        <div class="env-selector">
-            <button class="btn btn-tab active snake-theme" data-game="snake">🐍 Snake Env</button>
-            <button class="btn btn-tab" data-game="cybershooter">🕹️ CyberShooter (Free Fire)</button>
+    <!-- 1. Hero Full-Screen Landing Section -->
+    <div class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Reinforcement Learning</h1>
+            <h2 class="hero-subtitle">for Games</h2>
         </div>
-    </header>
-
-    <!-- Core App Layout -->
-    <div class="app-container">
         
-        <!-- Sidebar Controls -->
-        <aside class="sidebar">
-            <h2>Agent Settings</h2>
+        <!-- Bouncing indicator to guide downscroll -->
+        <div class="scroll-down-indicator" onclick="document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });">
+            <span></span>
+            Scroll Down
+        </div>
+    </div>
+
+    <!-- 2. Simulation Portal Dashboard (Visible after scrolling down) -->
+    <div class="app-dashboard" id="dashboard">
+        
+        <!-- Header bar -->
+        <header>
+            <h1>Reinforcement Learning Lab</h1>
+            <div class="env-selector">
+                <button class="btn btn-tab active snake-theme" data-game="snake">🐍 Snake Env</button>
+                <button class="btn btn-tab" data-game="cybershooter">🕹️ CyberShooter (Free Fire)</button>
+            </div>
+        </header>
+
+        <!-- Core App Layout -->
+        <div class="app-container">
             
-            <!-- Agent Type Selector -->
-            <div class="control-group">
-                <div class="control-label">
-                    <span>Agent Mode</span>
-                </div>
-                <select id="select-agent-mode">
-                    <option value="rl">Deep Q-Network (RL)</option>
-                    <option value="expert" selected>Expert AI (Pre-Trained)</option>
-                </select>
-            </div>
-            
-            <h2>Hyperparameters</h2>
-            
-            <!-- Speed Control -->
-            <div class="control-group">
-                <div class="control-label">
-                    <span>Simulation Speed</span>
-                    <span class="control-value" id="val-speed">1x</span>
-                </div>
-                <input type="range" id="slider-speed" min="1" max="6" step="1" value="1">
-            </div>
-
-            <!-- Learning Rate -->
-            <div class="control-group">
-                <div class="control-label">
-                    <span>Learning Rate (α)</span>
-                    <span class="control-value" id="val-lr">0.0010</span>
-                </div>
-                <input type="range" id="slider-lr" min="0.0001" max="0.0100" step="0.0001" value="0.0010">
-            </div>
-
-            <!-- Discount Factor -->
-            <div class="control-group">
-                <div class="control-label">
-                    <span>Discount Factor (γ)</span>
-                    <span class="control-value" id="val-gamma">0.99</span>
-                </div>
-                <input type="range" id="slider-gamma" min="0.90" max="0.99" step="0.01" value="0.99">
-            </div>
-
-            <!-- Epsilon Decay -->
-            <div class="control-group">
-                <div class="control-label">
-                    <span>Exploration Decay</span>
-                    <span class="control-value" id="val-decay">0.9950</span>
-                </div>
-                <input type="range" id="slider-decay" min="0.9500" max="0.9990" step="0.0005" value="0.9950">
-            </div>
-
-            <!-- Minibatch Size -->
-            <div class="control-group">
-                <div class="control-label">
-                    <span>Minibatch Size</span>
-                    <span class="control-value" id="val-batch">64</span>
-                </div>
-                <input type="range" id="slider-batch" min="16" max="256" step="16" value="64">
-            </div>
-        </aside>
-
-        <!-- Main Dashboard Workspace -->
-        <main class="workspace">
-            <div class="main-board">
+            <!-- Sidebar Controls -->
+            <aside class="sidebar">
+                <h2>Agent Settings</h2>
                 
-                <!-- Game Canvas Box -->
-                <div class="game-card">
-                    <div class="canvas-wrapper snake-active" id="canvas-wrapper">
-                        <canvas id="game-canvas" width="400" height="400"></canvas>
+                <!-- Agent Type Selector -->
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Agent Mode</span>
                     </div>
+                    <select id="select-agent-mode">
+                        <option value="rl">Deep Q-Network (RL)</option>
+                        <option value="expert" selected>Expert AI (Pre-Trained)</option>
+                    </select>
+                </div>
+                
+                <h2>Hyperparameters</h2>
+                
+                <!-- Speed Control -->
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Simulation Speed</span>
+                        <span class="control-value" id="val-speed">1x</span>
+                    </div>
+                    <input type="range" id="slider-speed" min="1" max="6" step="1" value="1">
+                </div>
+
+                <!-- Learning Rate -->
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Learning Rate (α)</span>
+                        <span class="control-value" id="val-lr">0.0010</span>
+                    </div>
+                    <input type="range" id="slider-lr" min="0.0001" max="0.0100" step="0.0001" value="0.0010">
+                </div>
+
+                <!-- Discount Factor -->
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Discount Factor (γ)</span>
+                        <span class="control-value" id="val-gamma">0.99</span>
+                    </div>
+                    <input type="range" id="slider-gamma" min="0.90" max="0.99" step="0.01" value="0.99">
+                </div>
+
+                <!-- Epsilon Decay -->
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Exploration Decay</span>
+                        <span class="control-value" id="val-decay">0.9950</span>
+                    </div>
+                    <input type="range" id="slider-decay" min="0.9500" max="0.9990" step="0.0005" value="0.9950">
+                </div>
+
+                <!-- Minibatch Size -->
+                <div class="control-group">
+                    <div class="control-label">
+                        <span>Minibatch Size</span>
+                        <span class="control-value" id="val-batch">64</span>
+                    </div>
+                    <input type="range" id="slider-batch" min="16" max="256" step="16" value="64">
+                </div>
+            </aside>
+
+            <!-- Main Dashboard Workspace -->
+            <main class="workspace">
+                <div class="main-board">
                     
-                    <!-- Buttons Action Bar -->
-                    <div class="action-bar">
-                        <button class="btn btn-primary" id="btn-start">▶ Start Training</button>
-                        <button class="btn btn-secondary" id="btn-pause" style="display: none;">⏸ Pause</button>
-                        <button class="btn btn-danger" id="btn-reset">🔄 Reset</button>
-                        <button class="btn btn-outline" id="btn-manual">🎮 Play Manually</button>
-                        <button class="btn btn-outline" id="btn-export">📥 Export Buffer</button>
-                    </div>
-                </div>
-
-                <!-- Statistics and Console Box -->
-                <div class="stats-card">
-                    <h2>Training Metrics</h2>
-                    
-                    <div class="stats-grid">
-                        <div class="stat-item">
-                            <span class="stat-label">Episodes</span>
-                            <span class="stat-val cyan" id="stat-episode">0</span>
+                    <!-- Game Canvas Box -->
+                    <div class="game-card">
+                        <div class="canvas-wrapper snake-active" id="canvas-wrapper">
+                            <canvas id="game-canvas" width="400" height="400"></canvas>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Current Score</span>
-                            <span class="stat-val green" id="stat-score">0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Max Score</span>
-                            <span class="stat-val green" id="stat-max-score">0</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Epsilon (ε)</span>
-                            <span class="stat-val orange" id="stat-epsilon">1.00</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Average Loss</span>
-                            <span class="stat-val" id="stat-loss">0.000</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-label">Buffer Size</span>
-                            <span class="stat-val" id="stat-buffer">0</span>
+                        
+                        <!-- Buttons Action Bar -->
+                        <div class="action-bar">
+                            <button class="btn btn-primary" id="btn-start">▶ Start Training</button>
+                            <button class="btn btn-secondary" id="btn-pause" style="display: none;">⏸ Pause</button>
+                            <button class="btn btn-danger" id="btn-reset">🔄 Reset</button>
+                            <button class="btn btn-outline" id="btn-manual">🎮 Play Manually</button>
+                            <button class="btn btn-outline" id="btn-export">📥 Export Buffer</button>
                         </div>
                     </div>
 
-                    <!-- Developer Logs -->
-                    <div class="console-log" id="log-console">
-                        <div>System Initialized. Click "Start Training" to begin.</div>
-                    </div>
-                </div>
-            </div>
+                    <!-- Statistics and Console Box -->
+                    <div class="stats-card">
+                        <h2>Training Metrics</h2>
+                        
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span class="stat-label">Episodes</span>
+                                <span class="stat-val cyan" id="stat-episode">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Current Score</span>
+                                <span class="stat-val green" id="stat-score">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Max Score</span>
+                                <span class="stat-val green" id="stat-max-score">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Epsilon (ε)</span>
+                                <span class="stat-val orange" id="stat-epsilon">1.00</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Average Loss</span>
+                                <span class="stat-val" id="stat-loss">0.000</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Buffer Size</span>
+                                <span class="stat-val" id="stat-buffer">0</span>
+                            </div>
+                        </div>
 
-            <!-- Charts Section -->
-            <div class="charts-grid">
-                <div class="chart-card">
-                    <h3>Score Progression (Last 50 Episodes)</h3>
-                    <div class="chart-container">
-                        <canvas id="chart-score"></canvas>
+                        <!-- Developer Logs -->
+                        <div class="console-log" id="log-console">
+                            <div>System Initialized. Click "Start Training" to begin.</div>
+                        </div>
                     </div>
                 </div>
-                <div class="chart-card">
-                    <h3>DQN Loss History</h3>
-                    <div class="chart-container">
-                        <canvas id="chart-loss"></canvas>
+
+                <!-- Charts Section -->
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Score Progression (Last 50 Episodes)</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-score"></canvas>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h3>DQN Loss History</h3>
+                        <div class="chart-container">
+                            <canvas id="chart-loss"></canvas>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </main>
+            </main>
+        </div>
     </div>
 
     <!-- Scripts -->

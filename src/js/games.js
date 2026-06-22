@@ -170,7 +170,7 @@ class SnakeGame {
             this.score++;
             reward = 10.0;
             this.placeFood();
-            this.spawnExplosion(newHead[0] * this.cellSize + this.cellSize/2, newHead[1] * this.cellSize + this.cellSize/2, '#00ff7f', 25);
+            this.spawnExplosion(newHead[0] * this.cellSize + this.cellSize/2, newHead[1] * this.cellSize + this.cellSize/2, '#ffd700', 25);
             this.screenShake = 8;
         } else {
             const oldDist = Math.hypot(this.snake[1][0] - this.food[0], this.snake[1][1] - this.food[1]);
@@ -303,7 +303,7 @@ class SnakeGame {
         ctx.fillRect(0, 0, this.width, this.height);
         
         const gridOpacity = 0.06 + Math.sin(this.pulseTime) * 0.02;
-        ctx.strokeStyle = `rgba(0, 255, 127, ${gridOpacity})`;
+        ctx.strokeStyle = `rgba(255, 215, 0, ${gridOpacity})`;
         ctx.lineWidth = 1;
         for (let i = 0; i <= this.gridCount; i++) {
             ctx.beginPath();
@@ -343,8 +343,8 @@ class SnakeGame {
             ctx.save();
             if (idx === 0) {
                 ctx.shadowBlur = 20;
-                ctx.shadowColor = '#00ff88';
-                ctx.fillStyle = '#00ff88';
+                 ctx.shadowColor = '#ffd700';
+                 ctx.fillStyle = '#ffd700';
                 
                 ctx.beginPath();
                 ctx.roundRect(sx + 1, sy + 1, size - 2, size - 2, 8);
@@ -370,7 +370,7 @@ class SnakeGame {
                 }
             } else {
                 const colorRatio = idx / this.snake.length;
-                ctx.fillStyle = `hsl(${140 - colorRatio * 60}, 100%, ${55 - colorRatio * 15}%)`;
+                 ctx.fillStyle = `hsl(${45 - colorRatio * 15}, 100%, ${55 - colorRatio * 15}%)`;
                 
                 ctx.beginPath();
                 ctx.roundRect(sx + 2, sy + 2, size - 4, size - 4, 6);
@@ -427,9 +427,9 @@ class CyberShooterGame {
         
         // Spawn 3 Bots
         this.bots = [
-            { id: 1, x: 60, y: 150, angle: 0.5, health: 100, color: '#9370db', cooldown: 0 },
+            { id: 1, x: 60, y: 150, angle: 0.5, health: 100, color: '#b58900', cooldown: 0 },
             { id: 2, x: 340, y: 150, angle: 2.2, health: 100, color: '#ff8c00', cooldown: 0 },
-            { id: 3, x: 200, y: 340, angle: -1.5, health: 100, color: '#00ffff', cooldown: 0 }
+            { id: 3, x: 200, y: 340, angle: -1.5, health: 100, color: '#e0a92a', cooldown: 0 }
         ];
         
         this.bullets = [];
@@ -830,8 +830,8 @@ class CyberShooterGame {
         this.healthPacks.forEach(hp => {
             ctx.save();
             ctx.shadowBlur = 10;
-            ctx.shadowColor = '#00ff7f';
-            ctx.fillStyle = '#00ff7f';
+             ctx.shadowColor = '#ffd700';
+             ctx.fillStyle = '#ffd700';
             ctx.beginPath();
             ctx.roundRect(hp[0] - 8, hp[1] - 8, 16, 16, 3);
             ctx.fill();
@@ -847,8 +847,8 @@ class CyberShooterGame {
         this.ammoCrates.forEach(ac => {
             ctx.save();
             ctx.shadowBlur = 10;
-            ctx.shadowColor = '#ffea00';
-            ctx.fillStyle = '#ffea00';
+             ctx.shadowColor = '#ff8c00';
+             ctx.fillStyle = '#ff8c00';
             ctx.beginPath();
             ctx.roundRect(ac[0] - 8, ac[1] - 8, 16, 16, 3);
             ctx.fill();
@@ -882,8 +882,8 @@ class CyberShooterGame {
         // Draw Player Character (Neon blue cyber soldier)
         ctx.save();
         ctx.shadowBlur = 15;
-        ctx.shadowColor = '#00bfff';
-        ctx.fillStyle = '#00bfff';
+         ctx.shadowColor = '#ffd700';
+         ctx.fillStyle = '#ffd700';
         ctx.beginPath();
         ctx.arc(this.playerX, this.playerY, this.playerRadius, 0, Math.PI * 2);
         ctx.fill();
@@ -933,10 +933,10 @@ class CyberShooterGame {
 
         // Draw safe zone shrinking ring
         ctx.save();
-        ctx.strokeStyle = `rgba(255, 0, 127, ${0.45 + Math.sin(this.pulseTime * 5.0) * 0.15})`;
-        ctx.lineWidth = 3;
-        ctx.shadowBlur = 18;
-        ctx.shadowColor = '#ff007f';
+         ctx.strokeStyle = `rgba(255, 140, 0, ${0.45 + Math.sin(this.pulseTime * 5.0) * 0.15})`;
+         ctx.lineWidth = 3;
+         ctx.shadowBlur = 18;
+         ctx.shadowColor = '#ff8c00';
         ctx.beginPath();
         ctx.arc(this.ringX, this.ringY, this.ringRadius, 0, Math.PI * 2);
         ctx.stroke();
