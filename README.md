@@ -1,5 +1,11 @@
 # Reinforcement Learning for Games: Snake & CyberShooter (Free Fire)
 
+### 🎓 Internship Information
+- **Intern Name:** Jampani Tarun Sai
+- **Intern ID:** CT-655
+- **Internship Duration:** 12 Weeks
+- **Project Title:** Reinforcement Learning for Games
+
 This repository provides a modular, production-ready, and beautifully visualized framework for training Deep Reinforcement Learning agents on custom games. It features custom-built Python/JavaScript game environments wrapped in standard interfaces, custom PyTorch/TensorFlow.js DQN implementations, offline replay transition dataset serialization, and an automated training comparison pipeline.
 
 ## 🚀 Key Features
