@@ -74,8 +74,8 @@ document.addEventListener('DOMContentLoaded', () => {
             game = new SnakeGame(400, 400, 20);
             canvasWrapper.className = 'canvas-wrapper snake-active';
         } else {
-            game = new BreakoutGame(400, 400);
-            canvasWrapper.className = 'canvas-wrapper breakout-active';
+            game = new CyberShooterGame(400, 400);
+            canvasWrapper.className = 'canvas-wrapper breakout-active'; // keeps cyan style
         }
         
         // 2. Setup Replay Buffer
@@ -445,11 +445,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 manualAction = 0; // go straight
             }
         } else {
-            // Breakout: 0 = stay, 1 = move left, 2 = move right
-            if (e.key === 'ArrowLeft') {
+            // CyberShooter: 0 = stay, 1 = move forward, 2 = turn left, 3 = turn right, 4 = shoot
+            if (e.key === 'ArrowUp' || e.key === 'w') {
                 manualAction = 1;
-            } else if (e.key === 'ArrowRight') {
+            } else if (e.key === 'ArrowLeft' || e.key === 'a') {
                 manualAction = 2;
+            } else if (e.key === 'ArrowRight' || e.key === 'd') {
+                manualAction = 3;
+            } else if (e.key === ' ' || e.key === 'Spacebar') {
+                manualAction = 4;
             } else {
                 manualAction = 0;
             }

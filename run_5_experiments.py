@@ -60,33 +60,33 @@ def run_experiments(args):
             "dataset_dir": "datasets",
             "render": False
         },
-        # Breakout experiments
+        # CyberShooter experiments
         {
-            "name": "Breakout_Double_DQN",
-            "game": "breakout",
+            "name": "CyberShooter_Double_DQN",
+            "game": "cybershooter",
             "dqn_type": "double",
             "episodes": args.episodes,
             "lr": 1e-3,
             "gamma": 0.99,
             "batch_size": 64,
             "replay_capacity": 50000,
-            "epsilon_decay": 0.992, # slower epsilon decay for harder game
-            "target_update": 300,
+            "epsilon_decay": 0.990, 
+            "target_update": 200,
             "save_dir": "models",
             "dataset_dir": "datasets",
             "render": False
         },
         {
-            "name": "Breakout_Dueling_DQN",
-            "game": "breakout",
+            "name": "CyberShooter_Dueling_DQN",
+            "game": "cybershooter",
             "dqn_type": "dueling",
             "episodes": args.episodes,
-            "lr": 5e-4, # lower learning rate for stability
+            "lr": 5e-4, 
             "gamma": 0.99,
             "batch_size": 64,
             "replay_capacity": 50000,
-            "epsilon_decay": 0.992,
-            "target_update": 300,
+            "epsilon_decay": 0.990,
+            "target_update": 200,
             "save_dir": "models",
             "dataset_dir": "datasets",
             "render": False
@@ -161,17 +161,17 @@ def run_experiments(args):
     if snake_results:
         plot_experiments_comparison(snake_results, metrics=["reward", "score"], save_path="models/snake_comparison.png")
         
-    # 2. Compare Breakout Agents (Double vs Dueling)
-    breakout_results = {name: data for name, data in results.items() if data['game'] == 'breakout'}
-    if breakout_results:
-        plot_experiments_comparison(breakout_results, metrics=["reward", "score"], save_path="models/breakout_comparison.png")
+    # 2. Compare CyberShooter Agents (Double vs Dueling)
+    cybershooter_results = {name: data for name, data in results.items() if data['game'] == 'cybershooter'}
+    if cybershooter_results:
+        plot_experiments_comparison(cybershooter_results, metrics=["reward", "score"], save_path="models/cybershooter_comparison.png")
         
     # Save the full results including reward series to a JSON so generate_report.py can load it
     with open("experiments_detailed.json", "w") as f:
         json.dump(results, f)
         
     print("Aggregated experiment data saved to experiments_summary.json and experiments_detailed.json")
-    print("Comparison plots saved to models/snake_comparison.png and models/breakout_comparison.png\n")
+    print("Comparison plots saved to models/snake_comparison.png and models/cybershooter_comparison.png\n")
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Run 5 RL Experiments and Compare")

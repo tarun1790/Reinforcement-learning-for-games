@@ -1,108 +1,54 @@
-# Reinforcement Learning for Games: Snake & Breakout
+# Reinforcement Learning for Games: Snake & CyberShooter (Free Fire)
 
-This repository provides a modular, production-ready, and beautifully visualized framework for training Deep Reinforcement Learning agents on custom games. It features custom-built Python game environments wrapped in the standard **OpenAI Gymnasium** interface, an custom PyTorch DQN implementation, offline replay transition dataset serialization, and an automated 5-experiment training comparison pipeline.
+This repository provides a modular, production-ready, and beautifully visualized framework for training Deep Reinforcement Learning agents on custom games. It features custom-built Python/JavaScript game environments wrapped in standard interfaces, custom PyTorch/TensorFlow.js DQN implementations, offline replay transition dataset serialization, and an automated training comparison pipeline.
 
 ## 🚀 Key Features
 
-* **Custom Game Environments**:
-  * 🐍 **Snake**: A grid-based navigation environment with safety/food ray-casting.
-  * 🕹️ **Breakout**: A physics-based paddle-ball-brick environment with continuous-coordinate observations.
-* **RL Agent Framework**: Custom PyTorch implementations of:
-  * **Standard Deep Q-Network (DQN)**
-  * **Double DQN (DDQN)**
-  * **Dueling DQN**
-* **Heavy Replay Buffer Serialization**: Functions to save/load transitions `(state, action, reward, next_state, done)` as compressed `.npz` files, creating high-volume offline training datasets.
-* **5-Experiment Automated Harness**: Run 5 distinct configurations sequentially and compare learning speeds, convergence, and scores.
-* **Beautiful HTML Report Dashboard**: Interactive, responsive dark-mode report page summarizing experiment leaderboards and Matplotlib training plots.
+*   **Custom Game Environments**:
+    *   🐍 **Snake**: A grid-based navigation environment with safety/food ray-casting.
+    *   🔫 **CyberShooter (Mini Free Fire)**: A top-down 2D Battle Royale shooter featuring continuous 2D coordinate maps, safe zone ring shrinkages, item health/ammo loot pickups, projectile bullet trajectories, bot fights, and combat Aim Lock.
+*   **Web Dashboard simulator**:
+    *   Watch the neural network train in real-time inside your web browser.
+    *   Sliders for speed (1x, 2x, 5x, and Headless background training), learning rate, discount factor, epsilon decay, and minibatch size.
+    *   Interactive keyboard play mode (move and shoot yourself, training the agent live on your actions).
+    *   Real-time live updating charts powered by Chart.js.
+*   **RL Agent Framework**: Custom PyTorch (Python) and TensorFlow.js (Browser) implementations of:
+    *   **Standard Deep Q-Network (DQN)**
+    *   **Double DQN (DDQN)**
+    *   **Dueling DQN**
+*   **Heavy Replay Buffer Serialization**: Functions to save/load transitions `(state, action, reward, next_state, done)` as compressed `.npz` or `.json` files, creating high-volume offline training datasets.
 
 ---
 
-## 🛠️ Installation & Setup
+## 🎮 Web Quick Start
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-username/rl-games-heavy-datasets.git
-   cd rl-games-heavy-datasets
-   ```
+To run the real-time simulation dashboard in your browser:
 
-2. **Install Dependencies**:
-   Ensure you have Python 3.10+ installed, then run:
-   ```bash
-   pip install -r requirements.txt
-   ```
-
----
-
-## 🎮 Usage Guide
-
-### 1. Training an Agent
-Train a single agent on a game with custom hyperparameters:
-```bash
-python train.py --game snake --dqn_type dueling --episodes 150
-```
-**Key Arguments**:
-* `--game`: Choose `snake` or `breakout`.
-* `--dqn_type`: Choose `standard`, `double`, or `dueling`.
-* `--episodes`: Number of episodes (default: 150).
-* `--lr`: Learning rate (default: 1e-3).
-* `--render`: Set this flag to render Pygame windows during training (slows down training).
-
-### 2. Evaluating a Trained Agent
-Watch the trained agent play the game in real-time:
-```bash
-python evaluate.py --game snake --dqn_type dueling --model_path models/snake_dueling_final.pt
-```
-
-### 3. Running the 5-Experiment Suite
-Train and compare 5 distinct agent configurations:
-```bash
-python run_5_experiments.py --episodes 150
-```
-This runs the following configs:
-1. `Snake_Standard_DQN`
-2. `Snake_Double_DQN`
-3. `Snake_Dueling_DQN`
-4. `Breakout_Double_DQN`
-5. `Breakout_Dueling_DQN`
-
-### 4. Generating the Interactive Report
-Compile the results into `report.html`:
-```bash
-python generate_report.py
-```
-Open `report.html` in your browser to view the leaderboard and training comparison charts.
+1.  **Start Local Server**:
+    Ensure you have Python installed, then run:
+    ```bash
+    python -m http.server 8000
+    ```
+2.  **Open Dashboard**:
+    Open your browser and navigate to **[http://localhost:8000](http://localhost:8000)**.
+3.  **Interact**:
+    *   Toggle between **Snake** and **CyberShooter**.
+    *   Click **Start Training** to train the DQN or toggle **Agent Mode** to **Expert AI** to watch perfect bot battles immediately!
+    *   Press **Play Manually** and control the character yourself (use Arrow keys / WASD to move, Spacebar to shoot!).
 
 ---
 
-## 📐 Reinforcement Learning Details
+## 🐍 Snake State & Action Spaces
+*   **Action Space (Discrete - 3)**: `0` (Go Straight), `1` (Turn Right), `2` (Turn Left).
+*   **Observation Space (Box - 11 binary dimensions)**: Ray-cast danger checks (Straight, Right, Left), current direction of motion, and food relative position.
+*   **Expert AI**: Breadth-First Search (BFS) pathfinder that eats food and survives indefinitely.
 
-### Snake State & Action Spaces
-* **Action Space (Discrete - 3)**:
-  * `0`: Go Straight
-  * `1`: Turn Right (relative)
-  * `2`: Turn Left (relative)
-* **Observation Space (Box - 11 binary dimensions)**:
-  * `[0:3]`: Obstacle direction checks (Straight, Right, Left)
-  * `[3:7]`: Current direction of motion (Up, Down, Left, Right)
-  * `[7:11]`: Food relative position (Up, Down, Left, Right)
-* **Reward Structure**:
-  * Eating Food: `+10.0`
-  * Dying: `-10.0`
-  * Getting closer/further from food: `+0.1` / `-0.15`
-
-### Breakout State & Action Spaces
-* **Action Space (Discrete - 3)**:
-  * `0`: Stay
-  * `1`: Move Left
-  * `2`: Move Right
-* **Observation Space (Box - 23 continuous dimensions)**:
-  * `[0:3]`: Normalized positions (paddle_x, ball_x, ball_y)
-  * `[3:5]`: Normalized ball velocities (ball_vx, ball_vy)
-  * `[5:23]`: Flat brick status array (1 = Active, 0 = Broken)
-* **Reward Structure**:
-  * Ball Bounce on Paddle: `+0.5`
-  * Breaking Brick: `+2.0`
-  * Level Clear: `+10.0`
-  * Losing Life: `-2.0`
-  * Dying: `-5.0`
-  * Distance to Ball centering penalty.
+## 🔫 CyberShooter State & Action Spaces
+*   **Action Space (Discrete - 5)**: `0` (Stay), `1` (Move Forward), `2` (Turn Left), `3` (Turn Right), `4` (Shoot).
+*   **Observation Space (Box - 16 continuous dimensions)**:
+    *   `[0:5]`: Normalized Player stats (health, ammo, x, y, angle).
+    *   `[5:7]`: Safe zone ring radius, distance to safe zone border.
+    *   `[7:9]`: Closest enemy bot relative offset (dx, dy).
+    *   `[9:13]`: Closest items relative offset (health_pack dx/dy, ammo_crate dx/dy).
+    *   `[13:16]`: Wall proximity raycasts.
+*   **Expert AI**: A combat bot state machine that aims/shoots at closest targets, seeks safe zones, and recovers health/ammo.

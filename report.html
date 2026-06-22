@@ -97,7 +97,7 @@
         }
 
         .stat-card.snake::before { background: var(--accent-green); }
-        .stat-card.breakout::before { background: var(--accent-cyan); }
+        .stat-card.cybershooter::before { background: var(--accent-cyan); }
         .stat-card.datasets::before { background: var(--accent-orange); }
 
         .stat-card:hover {
@@ -258,7 +258,7 @@
 <div class="container">
     <header>
         <h1>Reinforcement Learning Dashboard</h1>
-        <p class="subtitle">Comparative analysis of Deep Q-Networks trained on customized Snake and Breakout environments, showcasing performance gains and dataset collection sizes.</p>
+        <p class="subtitle">Comparative analysis of Deep Q-Networks trained on customized Snake and CyberShooter (Free Fire) environments, showcasing performance gains and dataset collection sizes.</p>
     </header>
 
     <!-- Stat Dashboard Cards -->
@@ -268,10 +268,10 @@
             <div class="value">Dueling DQN</div>
             <div class="desc">Highest overall reward and fastest convergence.</div>
         </div>
-        <div class="stat-card breakout">
-            <h3>Breakout Best Agent</h3>
+        <div class="stat-card cybershooter">
+            <h3>CyberShooter Best Agent</h3>
             <div class="value">Dueling DQN</div>
-            <div class="desc">Highest brick-clear score under continuous states.</div>
+            <div class="desc">Highest shootout and survival score under continuous coordinates.</div>
         </div>
         <div class="stat-card datasets">
             <h3>Experience Datasets</h3>
@@ -307,9 +307,9 @@
             <td>0.001</td>
             <td>20</td>
             <td style="font-weight: 700; color: #00bfff;">0.5 (Max: 2.0)</td>
-            <td>1,307</td>
-            <td style="font-family: monospace; color: #ff8c00;">6.03 KB</td>
-            <td>4.4s</td>
+            <td>1,513</td>
+            <td style="font-family: monospace; color: #ff8c00;">6.63 KB</td>
+            <td>7.0s</td>
         </tr>
         
         <tr>
@@ -318,10 +318,10 @@
             <td>DOUBLE</td>
             <td>0.001</td>
             <td>20</td>
-            <td style="font-weight: 700; color: #00bfff;">0.6 (Max: 2.0)</td>
-            <td>2,059</td>
-            <td style="font-family: monospace; color: #ff8c00;">8.45 KB</td>
-            <td>5.7s</td>
+            <td style="font-weight: 700; color: #00bfff;">0.4 (Max: 2.0)</td>
+            <td>1,906</td>
+            <td style="font-family: monospace; color: #ff8c00;">8.14 KB</td>
+            <td>4.8s</td>
         </tr>
         
         <tr>
@@ -330,34 +330,34 @@
             <td>DUELING</td>
             <td>0.001</td>
             <td>20</td>
-            <td style="font-weight: 700; color: #00bfff;">0.8 (Max: 2.0)</td>
-            <td>1,812</td>
-            <td style="font-family: monospace; color: #ff8c00;">7.59 KB</td>
-            <td>5.4s</td>
+            <td style="font-weight: 700; color: #00bfff;">0.3 (Max: 2.0)</td>
+            <td>1,543</td>
+            <td style="font-family: monospace; color: #ff8c00;">6.80 KB</td>
+            <td>6.4s</td>
         </tr>
         
         <tr>
-            <td style="font-weight: 600; color: #00ff7f;">Breakout_Double_DQN</td>
-            <td><span class="badge breakout">BREAKOUT</span></td>
+            <td style="font-weight: 600; color: #00ff7f;">CyberShooter_Double_DQN</td>
+            <td><span class="badge cybershooter">CYBERSHOOTER</span></td>
             <td>DOUBLE</td>
             <td>0.001</td>
             <td>20</td>
-            <td style="font-weight: 700; color: #00bfff;">30.0 (Max: 90.0)</td>
-            <td>9,850</td>
-            <td style="font-family: monospace; color: #ff8c00;">172.95 KB</td>
-            <td>21.5s</td>
+            <td style="font-weight: 700; color: #00bfff;">1.4 (Max: 3.0)</td>
+            <td>2,758</td>
+            <td style="font-family: monospace; color: #ff8c00;">123.16 KB</td>
+            <td>7.9s</td>
         </tr>
         
         <tr>
-            <td style="font-weight: 600; color: #00ff7f;">Breakout_Dueling_DQN</td>
-            <td><span class="badge breakout">BREAKOUT</span></td>
+            <td style="font-weight: 600; color: #00ff7f;">CyberShooter_Dueling_DQN</td>
+            <td><span class="badge cybershooter">CYBERSHOOTER</span></td>
             <td>DUELING</td>
             <td>0.0005</td>
             <td>20</td>
-            <td style="font-weight: 700; color: #00bfff;">40.5 (Max: 220.0)</td>
-            <td>9,236</td>
-            <td style="font-family: monospace; color: #ff8c00;">161.12 KB</td>
-            <td>24.3s</td>
+            <td style="font-weight: 700; color: #00bfff;">0.6 (Max: 2.0)</td>
+            <td>2,375</td>
+            <td style="font-family: monospace; color: #ff8c00;">104.93 KB</td>
+            <td>9.1s</td>
         </tr>
         
                 </tbody>
@@ -374,8 +374,8 @@
                 <img src="models/snake_comparison.png" alt="Snake Comparison Plots" class="graph-img">
             </div>
             <div class="graph-card">
-                <h4>Breakout Performance Comparisons</h4>
-                <img src="models/breakout_comparison.png" alt="Breakout Comparison Plots" class="graph-img">
+                <h4>CyberShooter Performance Comparisons</h4>
+                <img src="models/cybershooter_comparison.png" alt="CyberShooter Comparison Plots" class="graph-img">
             </div>
         </div>
     </div>

@@ -3,7 +3,7 @@ import os
 import torch
 import time
 from src.games.snake import SnakeEnv
-from src.games.breakout import BreakoutEnv
+from src.games.cybershooter import CyberShooterEnv
 from src.agents.dqn import DQNAgent
 
 def evaluate(args):
@@ -12,9 +12,9 @@ def evaluate(args):
         env = SnakeEnv(render_mode="human")
         # Adjust FPS for Snake to be watchable
         env.metadata["render_fps"] = args.fps if args.fps else 12
-    elif args.game == "breakout":
-        env = BreakoutEnv(render_mode="human")
-        env.metadata["render_fps"] = args.fps if args.fps else 60
+    elif args.game == "cybershooter":
+        env = CyberShooterEnv(render_mode="human")
+        env.metadata["render_fps"] = args.fps if args.fps else 30
     else:
         raise ValueError(f"Unknown game: {args.game}")
         
@@ -87,7 +87,7 @@ def evaluate(args):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluate a Trained DQN Agent")
-    parser.add_argument("--game", type=str, required=True, choices=["snake", "breakout"], help="Game to play")
+    parser.add_argument("--game", type=str, required=True, choices=["snake", "cybershooter"], help="Game to play")
     parser.add_argument("--dqn_type", type=str, required=True, choices=["standard", "double", "dueling"], help="DQN type")
     parser.add_argument("--model_path", type=str, required=True, help="Path to the model checkpoint (.pt)")
     parser.add_argument("--episodes", type=int, default=5, help="Number of evaluation episodes")

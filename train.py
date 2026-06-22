@@ -3,7 +3,7 @@ import os
 import torch
 import numpy as np
 from src.games.snake import SnakeEnv
-from src.games.breakout import BreakoutEnv
+from src.games.cybershooter import CyberShooterEnv
 from src.agents.dqn import DQNAgent
 from src.agents.replay_buffer import ReplayBuffer
 from src.utils.plotting import plot_training_results
@@ -17,8 +17,8 @@ def train(args):
     render_mode = "human" if args.render else None
     if args.game == "snake":
         env = SnakeEnv(render_mode=render_mode)
-    elif args.game == "breakout":
-        env = BreakoutEnv(render_mode=render_mode)
+    elif args.game == "cybershooter":
+        env = CyberShooterEnv(render_mode=render_mode)
     else:
         raise ValueError(f"Unknown game: {args.game}")
         
@@ -146,8 +146,8 @@ def train(args):
     }
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Train DQN Agents on Snake and Breakout")
-    parser.add_argument("--game", type=str, default="snake", choices=["snake", "breakout"], help="Game to train on")
+    parser = argparse.ArgumentParser(description="Train DQN Agents on Snake and CyberShooter")
+    parser.add_argument("--game", type=str, default="snake", choices=["snake", "cybershooter"], help="Game to train on")
     parser.add_argument("--dqn_type", type=str, default="dueling", choices=["standard", "double", "dueling"], help="DQN Architecture type")
     parser.add_argument("--episodes", type=int, default=150, help="Number of training episodes")
     parser.add_argument("--lr", type=float, default=1e-3, help="Learning rate")

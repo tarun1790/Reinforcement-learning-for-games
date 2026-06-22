@@ -137,7 +137,7 @@ def generate_html_report(summary_path="experiments_summary.json", output_path="r
         }}
 
         .stat-card.snake::before {{ background: var(--accent-green); }}
-        .stat-card.breakout::before {{ background: var(--accent-cyan); }}
+        .stat-card.cybershooter::before {{ background: var(--accent-cyan); }}
         .stat-card.datasets::before {{ background: var(--accent-orange); }}
 
         .stat-card:hover {{
@@ -298,7 +298,7 @@ def generate_html_report(summary_path="experiments_summary.json", output_path="r
 <div class="container">
     <header>
         <h1>Reinforcement Learning Dashboard</h1>
-        <p class="subtitle">Comparative analysis of Deep Q-Networks trained on customized Snake and Breakout environments, showcasing performance gains and dataset collection sizes.</p>
+        <p class="subtitle">Comparative analysis of Deep Q-Networks trained on customized Snake and CyberShooter (Free Fire) environments, showcasing performance gains and dataset collection sizes.</p>
     </header>
 
     <!-- Stat Dashboard Cards -->
@@ -308,10 +308,10 @@ def generate_html_report(summary_path="experiments_summary.json", output_path="r
             <div class="value">Dueling DQN</div>
             <div class="desc">Highest overall reward and fastest convergence.</div>
         </div>
-        <div class="stat-card breakout">
-            <h3>Breakout Best Agent</h3>
+        <div class="stat-card cybershooter">
+            <h3>CyberShooter Best Agent</h3>
             <div class="value">Dueling DQN</div>
-            <div class="desc">Highest brick-clear score under continuous states.</div>
+            <div class="desc">Highest shootout and survival score under continuous coordinates.</div>
         </div>
         <div class="stat-card datasets">
             <h3>Experience Datasets</h3>
@@ -354,8 +354,8 @@ def generate_html_report(summary_path="experiments_summary.json", output_path="r
                 <img src="models/snake_comparison.png" alt="Snake Comparison Plots" class="graph-img">
             </div>
             <div class="graph-card">
-                <h4>Breakout Performance Comparisons</h4>
-                <img src="models/breakout_comparison.png" alt="Breakout Comparison Plots" class="graph-img">
+                <h4>CyberShooter Performance Comparisons</h4>
+                <img src="models/cybershooter_comparison.png" alt="CyberShooter Comparison Plots" class="graph-img">
             </div>
         </div>
     </div>
